@@ -26,9 +26,30 @@
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // const startButton = document.getElementById("start");
+        // startButton.addEventListener("click", function () {
+        //   alert("始めるよ");
+        // });
+        const timeDisplay = document.getElementById("time");
+        let seconds = 0;
+        let intervalId = null;
+
+        function updateTime() {
+          seconds++;
+          let hours = Math.floor(seconds / 3600);
+          let minutes = Math.floor((seconds % 3600) / 60);
+          let secs = seconds % 60;
+          timeDisplay.textContent = `${String(hours).padStart(2, "0")}:${String(
+            minutes
+          ).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+        }
+
         const startButton = document.getElementById("start");
         startButton.addEventListener("click", function () {
-          alert("始めるよ");
+          if (intervalId === null) {
+            // 既にタイマーが動いていないことを確認
+            intervalId = setInterval(updateTime, 1000);
+          }
         });
       });
     </script>

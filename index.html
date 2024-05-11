@@ -51,6 +51,26 @@
             intervalId = setInterval(updateTime, 1000);
           }
         });
+
+        const stopButton = document.getElementById("stop");
+        stopButton.addEventListener("click", function () {
+          clearInterval(intervalId); // タイマーを停止する
+          intervalId = null; // intervalIdをリセットする
+        });
+
+        const resetButton = document.getElementById("reset");
+        resetButton.addEventListener("click", function () {
+          clearInterval(intervalId); // タイマーを停止する
+          intervalId = null; // intervalIdをリセットする
+          seconds = 0; // 経過時間をリセットする
+          // updateTime(); // 表示もリセットされた時間に更新する
+          let hours = Math.floor(seconds / 3600);
+          let minutes = Math.floor((seconds % 3600) / 60);
+          let secs = seconds % 60;
+          timeDisplay.textContent = `${String(hours).padStart(2, "0")}:${String(
+            minutes
+          ).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+        });
       });
     </script>
   </head>
